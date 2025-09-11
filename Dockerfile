@@ -8,6 +8,8 @@ RUN pip install uv supervisor
 COPY pyproject.toml .
 RUN uv pip install --system -e .
 
+# Install supervisor
+RUN apt-get update && apt-get install -y supervisor && rm -rf /var/lib/apt/lists/*
 # Copy application code
 COPY . .
 
