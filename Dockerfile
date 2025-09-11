@@ -2,18 +2,19 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install uv (fast package manager for pyproject.toml)
-RUN pip install uv
+# Install dependencies
+RUN pip install uv supervisor
 
-# Copy only dependency files first
 COPY pyproject.toml .
-
-# Install dependencies from pyproject.toml
 RUN uv pip install --system -e .
 
-# Copy the rest of the application
+# Copy application code
 COPY . .
 
+# Expose both ports
+EXPOSE 8000 8080
 
-EXPOSE 8000
-CMD ["uvicorn", "StreamFast.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Copy supervisor config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]
