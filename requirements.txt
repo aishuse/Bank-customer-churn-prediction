@@ -1,0 +1,17 @@
+numpy==2.2.4
+numba>=0.61
+pandas>=2.1
+scikit-learn>=1.3
+matplotlib
+seaborn
+imbalanced-learn==0.14.0
+xgboost
+jupyter
+ipykernel
+lightgbm>=4.0
+shap>=0.44
+dvc
+PyYAML
+streamlit
+mlflow
+-e .

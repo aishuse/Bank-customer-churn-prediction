@@ -1,0 +1,60 @@
+stages:
+  data_ingestion:
+    cmd: python -m src.components.data_ingestion
+    deps:
+    - src/components/data_ingestion.py
+    outs:
+    - data/raw
+
+  data_transformation:
+    cmd: python -m src.components.data_transformation
+    deps:
+    - src/components/data_transformation.py
+    - data/raw/train.csv
+    - data/raw/test.csv
+    outs:
+    - data/processed/train_processed.csv
+    - data/processed/test_processed.csv
+
+  data_preparation:
+    cmd: python -m src.components.data_preparation
+    deps:
+    - src/components/data_preparation.py
+    - data/processed/train_processed.csv
+    - data/processed/test_processed.csv
+    outs:
+    - data/prepared/train_prepared.csv
+    - data/prepared/test_prepared.csv
+
+  model_training:
+    cmd: python -m src.components.model_training
+    deps:
+    - data/prepared/train_prepared.csv
+    - data/prepared/test_prepared.csv
+    - src/components/model_training.py
+    - src/logger.py
+    - src/exception.py
+    outs:
+    - artifacts/best_model.pkl
+    - artifacts/selected_features.pkl
+
+  model_evaluation:
+    cmd: python -m src.components.model_evaluation
+    deps:
+      - src/components/model_evaluation.py
+      - artifacts/best_model.pkl
+      - artifacts/selected_features.pkl
+      - data/prepared/test_prepared.csv
+    outs:
+      - artifacts/confusion_matrix.png
+    metrics:
+      - artifacts/eval_metrics.json
+
+  model_registration:
+    cmd: python -m src.components.register_model
+    deps:
+    - artifacts/experiment_info.json
+    - src/components/register_model.py
+
+
+

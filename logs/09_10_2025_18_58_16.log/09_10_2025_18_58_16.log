@@ -1,0 +1,18 @@
+[ 2025-09-10 18:58:16,779 ] 15 root - INFO - Loading prepared data...
+[ 2025-09-10 18:58:16,822 ] 29 root - INFO - Starting RFECV feature selection...
+[ 2025-09-10 18:59:04,509 ] 42 root - INFO - Selected features: ['Customer_Age', 'Gender', 'Dependent_count', 'Months_on_book', 'Total_Relationship_Count', 'Months_Inactive_12_mon', 'Contacts_Count_12_mon', 'Credit_Limit', 'Total_Revolving_Bal', 'Avg_Open_To_Buy', 'Total_Amt_Chng_Q4_Q1', 'Total_Trans_Amt', 'Total_Trans_Ct', 'Total_Ct_Chng_Q4_Q1', 'Avg_Utilization_Ratio', 'Avg_Transaction_Amount', 'Credit_Dependency', 'Multi_Product_User', 'Education_Level_Doctorate', 'Education_Level_Graduate', 'Education_Level_High School', 'Education_Level_Uneducated', 'Education_Level_Unknown', 'Marital_Status_Married', 'Marital_Status_Single', 'Marital_Status_Unknown', 'Income_Category_$60K - $80K', 'Income_Category_$80K - $120K']
+[ 2025-09-10 18:59:04,521 ] 76 root - INFO - Tuning LightGBM...
+[ 2025-09-10 19:01:47,990 ] 90 root - INFO - Tuning XGBoost...
+[ 2025-09-10 19:03:41,206 ] 133 root - INFO - Selected best model: LightGBM
+[ 2025-09-10 19:03:41,293 ] 141 root - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.98      0.97      0.98      1699
+           1       0.87      0.91      0.89       327
+
+    accuracy                           0.96      2026
+   macro avg       0.93      0.94      0.94      2026
+weighted avg       0.97      0.96      0.96      2026
+
+[ 2025-09-10 19:03:41,316 ] 149 root - INFO - Final Test Metrics: {'accuracy': 0.9644619940769991, 'precision': 0.873900293255132, 'recall': 0.9113149847094801, 'f1': 0.8922155688622755, 'auc': 0.992244043537033}
+[ 2025-09-10 19:03:41,391 ] 159 root - INFO - Saved best model and selected features in E:\PROJECTS\Bank Churn Pred\artifacts/

@@ -1,0 +1,49 @@
+[project]
+name = "bank-churn-pred"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "boto3>=1.40.28",
+    "catboost>=1.2.8",
+    "dill>=0.4.0",
+    "dvc>=3.63.0",
+    "imbalanced-learn==0.14.0",
+    "ipykernel>=6.30.1",
+    "jupyter>=1.1.1",
+    "lightgbm>=4.0",
+    "matplotlib>=3.10.6",
+    "mlflow>=3.3.2",
+    "numba>=0.61",
+    "numpy==2.2.4",
+    "pandas>=2.1",
+    "pyyaml>=6.0.2",
+    "scikit-learn>=1.3",
+    "seaborn>=0.13.2",
+    "shap>=0.44",
+    "streamlit>=1.49.1",
+    "xgboost>=3.0.5",
+]
+
+[dependency-groups]
+dev = [
+    "bank-churn-pred",
+    "catboost>=1.2.8",
+    "dvc>=3.63.0",
+    "imbalanced-learn==0.14.0",
+    "ipykernel>=6.30.1",
+    "jupyter>=1.1.1",
+    "lightgbm>=4.0",
+    "matplotlib>=3.10.6",
+    "numba>=0.61",
+    "numpy==2.2.4",
+    "pandas>=2.1",
+    "pyyaml>=6.0.2",
+    "scikit-learn>=1.3",
+    "seaborn>=0.13.2",
+    "shap>=0.44",
+]
+
+[tool.uv.sources]
+bank-churn-pred = { workspace = true }

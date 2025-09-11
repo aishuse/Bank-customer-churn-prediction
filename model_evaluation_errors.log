@@ -1,0 +1,2 @@
+2025-09-10 21:36:33,420 - model_evaluation - ERROR - Failed to complete model evaluation: No module named 'boto3'
+2025-09-10 21:44:34,862 - model_evaluation - ERROR - Failed to complete model evaluation: Could not connect to the endpoint URL: "https://mlflow-bucket-180.s3.Global.amazonaws.com/607225729314685822/models/m-201fe8efe2684fe190f28d888663f778/artifacts/conda.yaml"
