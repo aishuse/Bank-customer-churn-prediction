@@ -14,6 +14,5 @@ RUN uv pip install --system -e .
 # Copy the rest of the application
 COPY . .
 
-EXPOSE 5000
-
-CMD ["python", "app.py"]
+EXPOSE 8000
+CMD ["uvicorn", "StreamFast.main:app", "--host", "0.0.0.0", "--port", "8000"]
