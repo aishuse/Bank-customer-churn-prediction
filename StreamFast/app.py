@@ -60,12 +60,12 @@ if submitted:
     API_URL = "http://localhost:8000/predict"  # safer than 127.0.0.1
 
     # Retry if FastAPI isn't ready yet
-    for _ in range(10):
+    for _ in range(5):
         try:
             response = requests.post(API_URL, json=payload)
             break
         except requests.exceptions.ConnectionError:
-            time.sleep(2)
+            time.sleep(1)
     else:
         st.error("Failed to connect to FastAPI. Please try again later.")
         st.stop()
