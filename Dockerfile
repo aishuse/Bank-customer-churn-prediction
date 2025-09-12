@@ -26,5 +26,6 @@ EXPOSE 8000 8080
 # COPY wait-for-fastapi.sh /app/wait-for-fastapi.sh
 # RUN chmod +x /app/wait-for-fastapi.sh
 
+
 # Start supervisord
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
