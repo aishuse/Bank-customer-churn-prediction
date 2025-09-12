@@ -8,7 +8,7 @@ import mlflow
 # ---------------------------
 # MLflow setup
 # ---------------------------
-MLFLOW_TRACKING_URI = "http://ec2-54-175-35-49.compute-1.amazonaws.com:5000/"
+MLFLOW_TRACKING_URI = "http://ec2-54-163-210-214.compute-1.amazonaws.com:5000/"
 MODEL_NAME = "churn_pred_model"
 MODEL_VERSION = "1"  # or "Production"
 
