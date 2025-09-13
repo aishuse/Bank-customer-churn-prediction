@@ -10,16 +10,14 @@ RUN apt-get update && apt-get install -y supervisor curl bash \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
+RUN pip install --upgrade pip
 RUN pip install uvicorn streamlit supervisor mlflow pandas requests
 
-# Copy pyproject.toml and install your package
+# Copy Python package metadata and install package (if you have one)
 COPY pyproject.toml .
 RUN pip install -e .
 
-# Copy artifacts folder (for selected_features.pkl)
-COPY artifacts /app/artifacts
-
-# Copy application code
+# Copy entire project (including StreamFast and artifacts)
 COPY . .
 
 # Copy supervisor configuration
@@ -27,7 +25,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose FastAPI and Streamlit ports
 EXPOSE 8000 8080
-
 
 # Start supervisord
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
