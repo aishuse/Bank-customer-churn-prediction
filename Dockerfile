@@ -5,18 +5,19 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y supervisor curl bash && rm -rf /var/lib/apt/lists/*
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgomp1 \
+RUN apt-get update && apt-get install -y supervisor curl bash \
+    && apt-get install -y --no-install-recommends libgomp1 \
     && rm -rf /var/lib/apt/lists/*
+
 # Install Python dependencies
-RUN pip install uv streamlit supervisor
+RUN pip install uvicorn streamlit supervisor mlflow pandas requests
 
 # Copy pyproject.toml and install your package
 COPY pyproject.toml .
-RUN uv pip install --system -e .
+RUN pip install -e .
+
+# Copy artifacts folder (for selected_features.pkl)
+COPY artifacts /app/artifacts
 
 # Copy application code
 COPY . .
@@ -26,10 +27,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose FastAPI and Streamlit ports
 EXPOSE 8000 8080
-
-# COPY wait-for-fastapi.sh /app/wait-for-fastapi.sh
-# RUN chmod +x /app/wait-for-fastapi.sh
-
 
 # Start supervisord
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
