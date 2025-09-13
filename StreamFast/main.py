@@ -17,7 +17,9 @@ model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
 model = mlflow.sklearn.load_model(model_uri)
 
 # Load selected features
-with open("artifacts/selected_features.pkl", "rb") as f:
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+with open(os.path.join(BASE_DIR, "artifacts", "selected_features.pkl"), "rb") as f:
     selected_features = pickle.load(f)
 
 # ---------------------------
