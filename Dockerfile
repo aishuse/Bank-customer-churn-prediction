@@ -17,8 +17,11 @@ RUN pip install uvicorn streamlit supervisor mlflow pandas requests
 COPY pyproject.toml .
 RUN pip install -e .
 
-# Copy entire project (including StreamFast and artifacts)
-COPY . .
+# Copy source code
+COPY StreamFast /app/StreamFast
+
+# Copy artifacts explicitly
+COPY artifacts /app/artifacts
 
 # Copy supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
