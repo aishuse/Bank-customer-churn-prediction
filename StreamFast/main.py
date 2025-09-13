@@ -18,9 +18,12 @@ model = mlflow.sklearn.load_model(model_uri)
 
 # Load selected features
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-with open(os.path.join(BASE_DIR, "artifacts", "selected_features.pkl"), "rb") as f:
+BASE_DIR = "/app"  # inside Docker, all code is under /app
+ARTIFACTS_PATH = os.path.join(BASE_DIR, "artifacts", "selected_features.pkl")
+
+with open(ARTIFACTS_PATH, "rb") as f:
     selected_features = pickle.load(f)
+
 
 # ---------------------------
 # FastAPI app
