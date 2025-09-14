@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
+from gen_ai_explainer import GenerativeAIExplainer
 
 st.title("Bank Churn Prediction")
 
@@ -73,6 +74,16 @@ if submitted:
     if response.status_code == 200:
         result = response.json()
         st.success(f"Predicted Class: {result[0]['Predicted_Class']}, Churn Probability: {result[0]['Churn_Probability']:.2f}")
+        features = payload[0]  # user input dict
+        prediction = result[0]["Predicted_Class"]
+        probability = result[0]["Churn_Probability"]
+
+       # Generative AI Explanation
+        with st.spinner("Generating explanation..."):
+            explainer = GenerativeAIExplainer()
+            explanation = explainer.explain_prediction(features, prediction)
+            st.markdown("### Why?")
+            st.write(explanation)
     else:
         st.error(f"API Error: {response.status_code}")
 

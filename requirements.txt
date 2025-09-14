@@ -14,4 +14,7 @@ dvc
 PyYAML
 streamlit
 mlflow
+langchain
+langchain-groq
+python-dotenv
 -e .
