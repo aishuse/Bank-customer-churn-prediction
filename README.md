@@ -2,6 +2,9 @@
 
 A **full ML lifecycle project** for predicting **customer churn** in banking, covering **data ingestion, feature engineering, model training, evaluation, deployment**, and a **real-time prediction interface** with **AI-driven explanations**.  
 
+This project also includes a **bulk churn detection workflow** that can automatically **generate and send personalized retention emails** using **LangChain + Groq**, orchestrated with **LangGraph** for **stateful AI workflow management**.
+
+
 **Live Prediction App:** [🔗 Click Here](http://ec2-34-201-147-159.compute-1.amazonaws.com:8080/)
 
 ---
@@ -42,11 +45,25 @@ A **full ML lifecycle project** for predicting **customer churn** in banking, co
   - Explains **why the model predicted churn** for each customer  
   - Helps **non-technical users understand model decisions**
 
-### 6️⃣ Logging & Evaluation
+### 6️⃣ Bulk Churn Detection & Retention Emails
+- **Detect churners in bulk** using historical customer data  
+- **Generates personalized retention emails** automatically for each churner  
+- Emails use content from **retention offer guide PDF**  
+- Emails are sent via **Gmail SMTP**  
+- Orchestrated with **LangGraph R8** workflow:
+  - `usermsg` → checks user intent
+  - `predict_churners` → predicts churn using ML model
+  - `send_email` → generates & sends emails
+  - `other_query` → handles non-churn queries  
+- **Streamlit button workflow**:  
+  1. Identify churned customers  
+  2. Display results in a **dataframe**  
+  3. Generate & send **personalized emails** automatically  
+
+### 7️⃣ Logging & Evaluation
 - **Comprehensive logging** for all stages  
 - **Confusion matrices & metrics** tracked in MLflow  
 - Ensures **transparent and reproducible evaluation**
-
 ---
 
 ## Technologies
@@ -57,6 +74,5 @@ A **full ML lifecycle project** for predicting **customer churn** in banking, co
 - ⚙️ **GitHub Actions** – CI/CD deployment  
 - 🚀 **FastAPI** – Backend API  
 - 🖥️ **Streamlit** – Frontend UI  
-- 🤖 **LangChain + Groq** – AI-powered model explanations  
-
-
+- 🤖 **LangChain + Groq** – AI-powered model explanations & email generation  
+- 📌 **LangGraph** – Orchestrates AI workflow & stateful decision logic  
