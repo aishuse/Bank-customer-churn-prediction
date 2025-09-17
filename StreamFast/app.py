@@ -4,13 +4,13 @@ import requests
 import time
 from gen_ai_explainer import GenerativeAIExplainer
 from retention import ret_app
-
-st.title("📉 Customer Churn Detection & Retention 📧")
+st.title("📉 Bank Customer Churn Prediction & Retention 📧")
 st.markdown("""
 Welcome to the **Churn Retention Dashboard**.  
-You can either:
+
+You can either:  
 - 🔍 **Predict churn risk for an individual customer** by filling out the form.  
-- 🚀 **Identify churners in bulk** and automatically send them **personalized retention offers**.
+- 🚀 **Run bulk churn detection** to scan the bank’s entire customer base, identify which customers are **most likely to churn**, and automatically send them **personalized retention offers**.
 """)
 
 # ---------------------------
@@ -118,7 +118,7 @@ with tab2:
             st.session_state["churned_customers"] = churned_df
         
         if churned_df is not None and not churned_df.empty:
-            st.success(f"Found {len(churned_df)} churned customers.")
+            st.success(f"Found {len(churned_df)} churned customers & email send succesfully")
             st.dataframe(churned_df)
         else:
             st.info("No churners found at the moment.")

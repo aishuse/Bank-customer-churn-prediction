@@ -117,7 +117,7 @@ def predict_churn_selected_features(raw_df: pd.DataFrame):
 
 def predict_churners(state: AgentState):
     customers_df = pd.read_csv("data/csv/customers.csv")
-    details_df = pd.read_csv("data/csv/custdetails.csv")  # must contain Customer_ID, Full_Name, Address, Email, Phone
+    details_df = pd.read_csv("data/csv/custdetails.csv")  
 
     if "Customer_ID" not in customers_df.columns:
         customers_df.insert(0, "Customer_ID", range(1, len(customers_df) + 1))
