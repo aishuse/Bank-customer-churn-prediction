@@ -22,7 +22,7 @@ COPY StreamFast /app/StreamFast
 
 # Copy artifacts explicitly
 COPY artifacts /app/artifacts
-COPY data /app/data/csv
+COPY data/csv /app/data/csv
 
 # Copy supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
