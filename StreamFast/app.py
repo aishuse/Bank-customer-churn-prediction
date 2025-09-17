@@ -82,7 +82,14 @@ with tab1:
         
         if response.status_code == 200:
             result = response.json()
-            st.success(f"Predicted Class: {result[0]['Predicted_Class']}, Churn Probability: {result[0]['Churn_Probability']:.2f}")
+            prediction = result[0]["Predicted_Class"]
+            probability = result[0]["Churn_Probability"]
+
+            # Map numeric class to text
+            churn_label = "Will Churn" if prediction == 1 else "Will Not Churn"
+
+            st.success(f"Prediction: **{churn_label}** (Churn Probability: {probability:.2f})")
+            # st.success(f"Predicted Class: {result[0]['Predicted_Class']}, Churn Probability: {result[0]['Churn_Probability']:.2f}")
             features = payload[0]
             prediction = result[0]["Predicted_Class"]
             
