@@ -97,6 +97,8 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e AWS_REGION=${{ secrets.AWS_REGION }} \
             -e GROQ_API_KEY=${{ secrets.GROQ_API_KEY }} \
+            -e GMAIL_USER=${{ secrets.GMAIL_USER }} \
+            -e GMAIL_PASS=${{ secrets.GMAIL_PASS }} \
             ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
       # - name: Run Docker Image to serve users
       #   run: |
