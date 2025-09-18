@@ -3,7 +3,9 @@ import pandas as pd
 import requests
 import time
 from gen_ai_explainer import GenerativeAIExplainer
-from retention import ret_app
+from .retention import ret_app
+
+
 st.title("📉 Bank Customer Churn Prediction & Retention 📧")
 st.markdown("""
 Welcome to the **Churn Retention Dashboard**.  
