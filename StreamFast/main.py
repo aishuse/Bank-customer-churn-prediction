@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 from typing import List, Literal
 import mlflow
-from model_loader import model, selected_features
+from StreamFast.model_loader import model, selected_features
 
 # Your FastAPI app code here
 

@@ -20,7 +20,7 @@ from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTempla
 from langgraph.graph.message import add_messages
 from langgraph.graph import END, StateGraph, START
 import streamlit as st
-from retention import ret_app
+from StreamFast.retention import ret_app
 
 
 st.title("📉 Bank Customer Churn Prediction & Retention 📧")
