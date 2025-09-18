@@ -4,7 +4,9 @@ import pandas as pd
 import pickle
 from typing import List, Literal
 import mlflow
-from StreamFast.model_loader import model, selected_features
+from StreamFast.model_loader import get_model, selected_features
+
+model = get_model()  # only loads when needed
 
 # Your FastAPI app code here
 
