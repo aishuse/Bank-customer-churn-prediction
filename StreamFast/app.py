@@ -1,3 +1,8 @@
+import sys
+import os
+
+# Ensure /app is in the Python path so StreamFast can be imported
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import streamlit as st
 import pandas as pd
 import requests
