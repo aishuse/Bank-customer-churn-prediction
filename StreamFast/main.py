@@ -4,24 +4,9 @@ import pandas as pd
 import pickle
 from typing import List, Literal
 import mlflow
+from model_loader import model, selected_features
 
-# ---------------------------
-# MLflow setup
-# ---------------------------
-MLFLOW_TRACKING_URI = "http://ec2-34-201-147-159.compute-1.amazonaws.com:5000/"
-MODEL_NAME = "churn_pred_model"
-MODEL_VERSION = "1"  # or "Production"
-
-mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
-model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
-model = mlflow.sklearn.load_model(model_uri)
-
-# Load selected features
-import os
-BASE_DIR = os.path.join(os.path.dirname(__file__), "..")  # parent of StreamFast
-ARTIFACTS_PATH = os.path.join(BASE_DIR, "artifacts", "selected_features.pkl")
-with open(ARTIFACTS_PATH, "rb") as f:
-    selected_features = pickle.load(f)
+# Your FastAPI app code here
 
 
 # ---------------------------
