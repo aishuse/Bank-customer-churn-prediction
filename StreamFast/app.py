@@ -20,8 +20,8 @@ from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTempla
 from langgraph.graph.message import add_messages
 from langgraph.graph import END, StateGraph, START
 import streamlit as st
-from main import model, selected_features
-import os
+# from main import model, selected_features
+import os,mlflow,pickle
 
 st.title("📉 Bank Customer Churn Prediction & Retention 📧")
 st.markdown("""
@@ -160,6 +160,20 @@ def sendmail(to_email: str, subject: str, body: str):
 # ==========================
 # Data & Model Loading
 # ==========================
+MLFLOW_TRACKING_URI = "http://ec2-34-201-147-159.compute-1.amazonaws.com:5000/"
+MODEL_NAME = "churn_pred_model"
+MODEL_VERSION = "1"  # or "Production"
+
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
+model = mlflow.sklearn.load_model(model_uri)
+
+# Load selected features
+import os
+BASE_DIR = os.path.join(os.path.dirname(__file__), "..")  # parent of StreamFast
+ARTIFACTS_PATH = os.path.join(BASE_DIR, "artifacts", "selected_features.pkl")
+with open(ARTIFACTS_PATH, "rb") as f:
+    selected_features = pickle.load(f)
 # model_path = "lgbm_model.pkl"
 # selected_features_path = "selected_features.pkl"
 loaded_model = model
