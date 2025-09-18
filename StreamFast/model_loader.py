@@ -9,14 +9,14 @@ MODEL_VERSION = "1"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ARTIFACTS_PATH = os.path.join(BASE_DIR, "artifacts", "selected_features.pkl")
+ARTIFACTS_PATH = os.path.join(BASE_DIR, "../artifacts", "selected_features.pkl")
 
-# Load selected features immediately
+# Load selected features once
 with open(ARTIFACTS_PATH, "rb") as f:
     selected_features = pickle.load(f)
 
+# Lazy-load model
 _model = None
-
 def get_model():
     global _model
     if _model is None:

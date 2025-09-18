@@ -15,7 +15,6 @@ from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTempla
 from langgraph.graph.message import add_messages
 from langgraph.graph import END, StateGraph, START
 import streamlit as st
-from main import model, selected_features
 import os
 from StreamFast.model_loader import get_model, selected_features
 
