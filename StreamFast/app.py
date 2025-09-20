@@ -171,3 +171,4 @@ with tab2:
             st.dataframe(churned_df)
         else:
             st.info("No churners found at the moment.")
+            
