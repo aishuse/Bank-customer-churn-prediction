@@ -44,7 +44,7 @@ from langgraph.graph import END, StateGraph, START
 import streamlit as st
 import os
 from StreamFast.model_loader import get_model, selected_features
-from retention import get_ret_app
+from StreamFast.retention import get_ret_app
 
 # Now you can use it
 ret_app = get_ret_app()
@@ -171,4 +171,4 @@ with tab2:
             st.dataframe(churned_df)
         else:
             st.info("No churners found at the moment.")
-            
+
