@@ -178,18 +178,22 @@ def other_query(state: AgentState):
 # ==========================
 # Workflow Graph
 # ==========================
-workflow = StateGraph(AgentState)
-workflow.add_node("usermsg", usermsg)
-workflow.add_node("predict_churners", predict_churners)
-workflow.add_node("send_email", send_email)
-workflow.add_node("other_query", other_query)
 
-workflow.add_edge(START, "usermsg")
-workflow.add_conditional_edges("usermsg", decide_check, {
-    "predict_churners": "predict_churners",
-    "other_query": "other_query"
-})
-workflow.add_edge("predict_churners", "send_email")
-workflow.add_edge("send_email", END)
 
-ret_app = workflow.compile()
+def get_ret_app():
+    workflow = StateGraph(AgentState)
+    workflow.add_node("usermsg", usermsg)
+    workflow.add_node("predict_churners", predict_churners)
+    workflow.add_node("send_email", send_email)
+    workflow.add_node("other_query", other_query)
+
+    workflow.add_edge(START, "usermsg")
+    workflow.add_conditional_edges("usermsg", decide_check, {
+        "predict_churners": "predict_churners",
+        "other_query": "other_query"
+    })
+    workflow.add_edge("predict_churners", "send_email")
+    workflow.add_edge("send_email", END)
+
+    ret_app = workflow.compile()
+    return ret_app
