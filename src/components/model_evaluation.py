@@ -105,7 +105,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str):
         raise
 
 def main():
-    mlflow.set_tracking_uri("http://ec2-34-235-129-172.compute-1.amazonaws.com:5000/")
+    mlflow.set_tracking_uri("http://ec2-54-210-243-1.compute-1.amazonaws.com:5000/")
     mlflow.set_experiment("churn-model-evaluation-")
 
     with mlflow.start_run() as run:

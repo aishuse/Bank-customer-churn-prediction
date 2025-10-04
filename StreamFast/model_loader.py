@@ -2,7 +2,7 @@ import os
 import pickle
 import mlflow
 
-MLFLOW_TRACKING_URI = "http://ec2-34-235-129-172.compute-1.amazonaws.com:5000/"
+MLFLOW_TRACKING_URI = "http://ec2-54-210-243-1.compute-1.amazonaws.com:5000/"
 MODEL_NAME = "churn_pred_model"
 MODEL_VERSION = "1"
 
