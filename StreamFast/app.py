@@ -9,44 +9,19 @@ import requests
 import time
 from gen_ai_explainer import GenerativeAIExplainer
 from typing import Annotated, Literal, Sequence, TypedDict
-import pandas as pd
-import joblib
-import smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
-
-from langchain_groq import ChatGroq
 from langchain_core.messages import BaseMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
-
 from langgraph.graph.message import add_messages
 from langgraph.graph import END, StateGraph, START
-import streamlit as st
-# from typing import Annotated, Literal, Sequence, TypedDict
-import pandas as pd
-import joblib
 import smtplib
-from email.mime.text import MIMEText
-from dotenv import load_dotenv
-
-from langchain_groq import ChatGroq
-from langchain_core.messages import BaseMessage
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import PromptTemplate
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
-
-from langgraph.graph.message import add_messages
-from langgraph.graph import END, StateGraph, START
-import streamlit as st
-import os
 from StreamFast.model_loader import get_model, selected_features
 from StreamFast.retention import get_ret_app
 
-# Now you can use it
 ret_app = get_ret_app()
 
 model = get_model()  # only loads when needed
@@ -171,4 +146,3 @@ with tab2:
             st.dataframe(churned_df)
         else:
             st.info("No churners found at the moment.")
-

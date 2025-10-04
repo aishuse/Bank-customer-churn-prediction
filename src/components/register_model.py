@@ -4,7 +4,7 @@ import logging
 import os
 
 # Set up MLflow tracking URI
-mlflow.set_tracking_uri("http://ec2-34-201-147-159.compute-1.amazonaws.com:5000/")
+mlflow.set_tracking_uri("http://ec2-34-235-129-172.compute-1.amazonaws.com:5000/")
 
 # logging configuration
 logger = logging.getLogger('model_registration')
@@ -61,6 +61,8 @@ def register_model(model_name: str, model_info: dict):
         print(f"Error: {e}")
         raise
 
+    
+
 def main():
     try:
         # Use portable path construction
@@ -72,6 +74,7 @@ def main():
     except Exception as e:
         logger.error('Failed to complete the model registration process: %s', e)
         print(f"Error: {e}")
+
 
 if __name__ == '__main__':
     main()

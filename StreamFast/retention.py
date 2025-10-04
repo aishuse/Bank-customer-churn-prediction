@@ -32,7 +32,9 @@ model = get_model()  # only loads when needed
 # ==========================
 load_dotenv()
 api_key = os.environ.get("GROQ_API_KEY")
-groq_model = ChatGroq(model="llama-3.1-8b-instant", api_key=api_key)
+groqmodel = os.environ.get("GROQ_MODEL")
+
+groq_model = ChatGroq(model=groqmodel, api_key=api_key)
 GMAIL_USER = os.environ.get("GMAIL_USER")
 GMAIL_PASS = os.environ.get("GMAIL_PASS")
 # ==========================

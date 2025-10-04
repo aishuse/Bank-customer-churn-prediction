@@ -82,6 +82,8 @@ def log_confusion_matrix(cm, dataset_name):
     plt.close()
     mlflow.log_artifact(cm_file_path)
 
+
+
 def save_metrics(report: dict, file_path: str):
     try:
         with open(file_path, "w") as f:
@@ -103,8 +105,8 @@ def save_model_info(run_id: str, model_path: str, file_path: str):
         raise
 
 def main():
-    mlflow.set_tracking_uri("http://ec2-34-201-147-159.compute-1.amazonaws.com:5000/")
-    mlflow.set_experiment("churn-model-evaluation")
+    mlflow.set_tracking_uri("http://ec2-34-235-129-172.compute-1.amazonaws.com:5000/")
+    mlflow.set_experiment("churn-model-evaluation-")
 
     with mlflow.start_run() as run:
         try:
