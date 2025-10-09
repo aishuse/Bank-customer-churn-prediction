@@ -110,8 +110,8 @@ stages:
       size: 413200
     - path: src/components/model_evaluation.py
       hash: md5
-      md5: bf53069b2d29348751b420c04814c0ee
-      size: 6380
+      md5: 4160e1e9e854b4a826062280ea81a9fb
+      size: 6381
     outs:
     - path: artifacts/confusion_matrix.png
       hash: md5
@@ -126,9 +126,9 @@ stages:
     deps:
     - path: artifacts/experiment_info.json
       hash: md5
-      md5: f8b5f36f35814d85ed30f400f0dacf20
+      md5: bc6bb7462060a094d66f0b0bb3c746a6
       size: 87
     - path: src/components/register_model.py
       hash: md5
-      md5: e60f51924b91a93a398c29980dcd6a09
-      size: 2762
+      md5: 85f697001d45146b6045805ac549cf1d
+      size: 2763

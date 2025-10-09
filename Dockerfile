@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
 # Python dependencies
 RUN pip install --upgrade pip
 RUN pip install uvicorn streamlit supervisor mlflow pandas requests \
-    langchain langchain-groq python-dotenv langgraph pypdf langchain-community
+    langchain langchain-groq python-dotenv langgraph pypdf langchain-community \
+    chromadb langchain-huggingface sentence-transformers  beautifulsoup4 selenium webdriver-manager
 
 # Copy Python package metadata and install package
 COPY pyproject.toml .

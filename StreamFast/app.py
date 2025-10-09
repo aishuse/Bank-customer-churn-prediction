@@ -21,9 +21,10 @@ from langgraph.graph import END, StateGraph, START
 import smtplib
 from StreamFast.model_loader import get_model, selected_features
 from StreamFast.retention import get_ret_app
+from StreamFast.rag import get_rag
 
 ret_app = get_ret_app()
-
+rag = get_rag()
 model = get_model()  # only loads when needed
 
 
@@ -34,12 +35,17 @@ Welcome to the **Churn Retention Dashboard**.
 You can either:  
 - 🔍 **Predict churn risk for an individual customer** by filling out the form.  
 - 🚀 **Run bulk churn detection** to scan the bank’s entire customer base, identify which customers are **most likely to churn**, and automatically send them **personalized retention offers**.
+- 💬 **Chat with our assistant to know about banking using Agentic RAG.**
 """)
 
 # ---------------------------
 # Tabs for splitting screens
 # ---------------------------
-tab1, tab2 = st.tabs(["🔍 Single Customer Prediction", "🚀 Bulk Churn Detection & Send Offers"])
+tab1, tab2, tab3 = st.tabs([
+    "🔍 Single Customer Prediction", 
+    "🚀 Bulk Churn Detection & Send Offers", 
+    "💬 Agentic RAG Chat Assistant"
+])
 
 # ---------------------------
 # Tab 1: Single Customer Prediction
@@ -146,3 +152,50 @@ with tab2:
             st.dataframe(churned_df)
         else:
             st.info("No churners found at the moment.")
+
+with tab3:
+    from langchain_core.messages import HumanMessage
+
+    st.set_page_config(page_title="Agentic RAG Assistant", page_icon="🤖")
+    st.title("🤖 Agentic RAG Chat Assistant")
+
+    # Initialize conversation history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # User input at the bottom
+    user_input = st.text_input("Type your question here:")
+
+    if user_input:
+        # Wrap input in HumanMessage
+        human_msg = HumanMessage(content=user_input)
+        st.session_state.messages.append(human_msg)
+        
+        # Invoke your RAG workflow
+        result = rag.invoke({"messages": st.session_state.messages})
+        
+        # Extract AI reply
+        ai_reply = result["messages"][-1]
+        
+        # Append AI reply to conversation history
+        st.session_state.messages.append(ai_reply)
+
+    # Group Q&A together for display, latest first
+    grouped = []
+    i = 0
+    while i < len(st.session_state.messages):
+        if isinstance(st.session_state.messages[i], HumanMessage):
+            question = st.session_state.messages[i]
+            answer = st.session_state.messages[i+1] if i+1 < len(st.session_state.messages) else None
+            grouped.append((question, answer))
+            i += 2
+        else:
+            i += 1
+
+    # Display Q&A latest first
+    for question, answer in reversed(grouped):
+        with st.chat_message("user"):
+            st.markdown(question.content)
+        if answer:
+            with st.chat_message("assistant"):
+                st.markdown(answer.content)

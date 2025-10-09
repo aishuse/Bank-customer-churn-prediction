@@ -4,7 +4,7 @@ import logging
 import os
 
 # Set up MLflow tracking URI
-mlflow.set_tracking_uri("http://ec2-54-210-243-1.compute-1.amazonaws.com:5000/")
+mlflow.set_tracking_uri("http://ec2-52-91-173-215.compute-1.amazonaws.com:5000/")
 
 # logging configuration
 logger = logging.getLogger('model_registration')
