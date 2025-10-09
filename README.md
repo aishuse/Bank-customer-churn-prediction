@@ -5,7 +5,7 @@ A **full ML lifecycle project** for predicting **customer churn** in banking, co
 This project also includes a **bulk churn detection workflow** that can automatically **generate and send personalized retention emails** using **LangChain + Groq**, orchestrated with **LangGraph** for **stateful AI workflow management**.
 
 
-**Live Prediction App:** [🔗 Click Here](http://ec2-34-201-147-159.compute-1.amazonaws.com:8080/)
+**Live Prediction App:** [🔗 Click Here](http://ec2-52-91-173-215.compute-1.amazonaws.com:8080/)
 
 ---
 
@@ -65,6 +65,19 @@ This project also includes a **bulk churn detection workflow** that can automati
 - **Confusion matrices & metrics** tracked in MLflow  
 - Ensures **transparent and reproducible evaluation**
 ---
+
+### 8️⃣ Retrieval-Augmented Generation (RAG) for Banking FAQ Assistant
+
+An integrated **RAG-based chatbot** that intelligently answers **bank-related FAQs** using **live website data**.  
+The chatbot:
+- Dynamically **scrapes** official bank FAQ and offer pages using **Selenium**  
+- Splits and **embeds content** using `HuggingFace Embeddings` (`all-MiniLM-L6-v2`)  
+- Stores vectors in a **Chroma vector database**  
+- Uses **LangChain + LangGraph + ChatGroq** to:
+  - Classify queries  
+  - Retrieve relevant content  
+  - Decide contextual relevance  
+  - Generate **concise, factual, and context-based answers**  
 
 ## Technologies
 - 🐍 **Python, LightGBM, XGBoost** – Model development  
